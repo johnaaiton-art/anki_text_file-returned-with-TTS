@@ -2,9 +2,9 @@ import os
 import re
 import zipfile
 import json
-from io import StringIO, BytesIO
-from telegram import Update
-from telegram.ext import Application, MessageHandler, filters, CommandHandler, ContextTypes
+from io import BytesIO
+from telegram import Update, InputFile  # ✅ InputFile is now imported
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from google.cloud import texttospeech
 from google.oauth2.service_account import Credentials
 
