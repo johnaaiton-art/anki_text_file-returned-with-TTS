@@ -1,14 +1,15 @@
 import os
 import re
+import uuid
 import zipfile
 import json
 from io import BytesIO
-from telegram import Update, InputFile  # ✅ InputFile is now imported
+from telegram import Update, InputFile
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from google.cloud import texttospeech
 from google.oauth2.service_account import Credentials
 
-# --- Configuration ---
+# --- Configuration: Pull from Railway environment variables ---
 BOT_TOKEN = os.environ["BOT_TOKEN"]
 GOOGLE_CREDENTIALS_JSON = os.environ["GOOGLE_CREDENTIALS_JSON"]
 
@@ -18,14 +19,14 @@ def get_tts_client():
     return texttospeech.TextToSpeechClient(credentials=creds)
 
 def sanitize_filename(text: str) -> str:
-    # Keep it safe for filenames and Anki
+    """Make text safe for use in a filename (no spaces, special chars, etc.)."""
     clean = re.sub(r'[<>:"/\\|?*\x00-\x1f\s,]+', '_', text.strip())
-    return f"{clean}.mp3"
+    return clean
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "📤 Send a .txt file with lines like:\n"
-        "If you ____ ___ ____ positive people...\\tпроводить много времени с кем-то\\thang out with\n\n"
+        "English sentence\\tTranslation\\tTarget word(s)\n\n"
         "I'll generate TTS for the 3rd column and return an Anki-ready file + audio ZIP!"
     )
 
@@ -60,15 +61,10 @@ async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
             updated_lines.append(line)
             continue
 
-        # Generate unique but readable filename
-        base_name = sanitize_filename(col3)
-        # Ensure uniqueness in case of duplicates
-        counter = 1
-        audio_filename = base_name
-        while audio_filename in audio_files:
-            name, ext = os.path.splitext(base_name)
-            audio_filename = f"{name}_{counter}{ext}"
-            counter += 1
+        # --- Generate UNIQUE audio filename ---
+        safe_word = sanitize_filename(col3)
+        unique_id = str(uuid.uuid4())[:8]  # First 8 chars of UUID4
+        audio_filename = f"{safe_word}__{unique_id}.mp3"
 
         try:
             synthesis_input = texttospeech.SynthesisInput(text=col3)
@@ -96,7 +92,6 @@ async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Prepare updated .txt
     updated_txt = "\n".join(updated_lines)
     txt_buffer = BytesIO(updated_txt.encode("utf-8"))
-    txt_buffer.name = "anki_deck_with_audio.txt"
 
     # Prepare ZIP of audio files
     zip_buffer = BytesIO()
@@ -104,7 +99,6 @@ async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
         for fname, data in audio_files.items():
             zf.writestr(fname, data)
     zip_buffer.seek(0)
-    zip_buffer.name = "anki_audio_files.zip"
 
     # Send both files
     await update.message.reply_document(
@@ -113,14 +107,12 @@ async def handle_document(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
     await update.message.reply_document(
         document=InputFile(zip_buffer, filename="anki_audio_files.zip"),
-        caption="🔊 Audio files (extract into your Anki media folder)"
+        caption="🔊 Audio files — extract into your Anki media folder!"
     )
 
-# --- Main ---
-from telegram.ext import ApplicationBuilder
-
+# --- Main entry point ---
 def main():
-    app = ApplicationBuilder().token(BOT_TOKEN).build()
+    app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.Document.MimeType("text/plain"), handle_document))
     app.run_polling()
