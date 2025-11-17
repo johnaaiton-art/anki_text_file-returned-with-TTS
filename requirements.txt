@@ -1,0 +1,3 @@
+python-telegram-bot==20.7
+google-cloud-texttospeech==2.19.0
+python-dotenv
