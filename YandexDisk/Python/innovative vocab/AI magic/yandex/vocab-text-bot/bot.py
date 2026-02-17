@@ -6,6 +6,8 @@ import io
 import tempfile
 from typing import List, Dict, Optional
 import re
+from dotenv import load_dotenv
+load_dotenv()
 
 import telebot
 from telebot import types
