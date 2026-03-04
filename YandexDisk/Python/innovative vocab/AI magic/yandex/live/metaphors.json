@@ -1,0 +1,112 @@
+{
+  "ball_rolling": {
+    "triggers": ["start the process", "begin the process", "launch the process", "start the project", "begin the project", "launch the project"],
+    "metaphor": "get the ball rolling",
+    "definition": "start a process or activity"
+  },
+  "raise_bar": {
+    "triggers": ["higher standards", "raise standards", "increase expectations", "set higher expectations", "exceed expectations"],
+    "metaphor": "raise the bar",
+    "definition": "set higher standards or expectations"
+  },
+  "step_up_plate": {
+    "triggers": ["take responsibility", "take action", "someone needs to act", "time to act", "step forward"],
+    "metaphor": "step up to the plate",
+    "definition": "take responsibility or action when needed"
+  },
+  "hit_ground_running": {
+    "triggers": ["start immediately", "no time to waste", "start from day one", "begin immediately", "productive from day one"],
+    "metaphor": "hit the ground running",
+    "definition": "start immediately and effectively"
+  },
+  "extra_mile": {
+    "triggers": ["do more than", "go beyond", "do extra", "more than expected", "exceed what is required"],
+    "metaphor": "go the extra mile",
+    "definition": "do more than what is required"
+  },
+  "make_waves": {
+    "triggers": [ "impact", "disrupt"],
+    "metaphor": "make waves",
+    "definition": "create significant impact or cause disruption"
+  },
+  "break_ground": {
+    "triggers": ["never done before", "innovative approach", "new approach", "nobody has done this"],
+    "metaphor": "break new ground",
+    "definition": "do something innovative or unprecedented"
+  },
+  "nail_head": {
+    "triggers": ["exactly right", "spot on", "correct", "perfectly said", "that is exactly"],
+    "metaphor": "hit the nail on the head",
+    "definition": "be exactly right or accurate"
+  },
+  "bull_horns": {
+    "triggers": ["face the problem", "tackle the challenge", "deal with", "confront", "face a problem"],
+    "metaphor": "grab the bull by the horns",
+    "definition": "face a challenge directly and courageously"
+  },
+  "roll_sleeves": {
+    "triggers": ["get to work", "time to work", "ready to work", "need to work hard", "prepare to work hard"],
+    "metaphor": "roll up your sleeves",
+    "definition": "prepare to work hard"
+  },
+  "eye_ball": {
+    "triggers": ["stay focused", "keep focused", "focus on the goal", "don't lose focus", "maintain focus"],
+    "metaphor": "keep your eye on the ball",
+    "definition": "stay focused on the main objective"
+  },
+  "tighten_belt": {
+    "triggers": ["reduce costs", "cut spending", "spend less", "reduce budget", "save money"],
+    "metaphor": "tighten your belt",
+    "definition": "reduce spending or live more frugally"
+  },
+  "midnight_oil": {
+    "triggers": ["work late", "working late", "stayed up late", "work through the night"],
+    "metaphor": "burn the midnight oil",
+    "definition": "work late into the night"
+  },
+  "strike_chord": {
+    "triggers": ["resonated", "resonate","connected with me", "spoke to me", "related to that", "touched me"],
+    "metaphor": "strike a chord",
+    "definition": "resonate emotionally or create connection"
+  },
+  "thin_ice": {
+    "triggers": ["risky", "dangerous position", "could go very wrong"],
+    "metaphor": "walk on thin ice",
+    "definition": "be in a risky or precarious situation"
+  },
+  "hit_wall": {
+    "triggers": ["can't progress", "no way forward", "stuck", "can't move", "blocked"],
+    "metaphor": "hit a wall",
+    "definition": "reach a point where progress becomes impossible"
+  },
+  "cards_table": {
+    "triggers": ["be honest", "transparent", "hide nothing", "be open about everything"],
+    "metaphor": "put your cards on the table",
+    "definition": "be completely honest and transparent"
+  },
+  "climb_ladder": {
+    "triggers": ["move up", "get promoted", "advance in career", "progress in the company", "rise through the ranks"],
+    "metaphor": "climb the ladder",
+    "definition": "progress through ranks or hierarchy"
+  },
+  "plant_seeds": {
+    "triggers": ["lay the foundation", "prepare for", "invest", "will develop over time", "building for the future"],
+    "metaphor": "plant the seeds",
+    "definition": "start something that will develop over time"
+  },
+  "bear_fruit": {
+    "triggers": ["get results", "starting to pay off", "show results", "beginning to work"],
+    "metaphor": "bear fruit",
+    "definition": "produce positive results or benefits"
+  },
+  "move_needle": {
+    "triggers": ["make a difference", "real impact", "change things", "significant difference", "noticeable progress"],
+    "metaphor": "move the needle",
+    "definition": "make a noticeable difference or impact"
+  },
+  "wrap_up": {
+    "triggers": ["finish", "complete", "almost done", "nearly finished", "come to an end"],
+    "metaphor": "wrap up",
+    "definition": "complete or finish something"
+  }
+}
